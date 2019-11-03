@@ -1,0 +1,39 @@
+<body>
+  <div class="container">
+
+    <header>
+      <h1>Todo List</h1>
+
+    </header>
+    {{> loginButtons}}
+    <label class = 'hide-finished'>
+      <input type='checkbox' checked='{{hideCompleted}}'/>
+      Hide Finished TO DOs 
+    </label>
+    {{#if currentUser}}
+    <form class= new-task>
+      <input type="text" name="text" placeholder='add task here'/>
+    </form>
+    {{/if}}
+    <ul>
+      {{#each tasksFunction}}
+      <!-- other sub templated  tasks is a template writing below -->
+      {{> individualTask}}
+
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+<template name="individualTask">
+  <style>
+    .checked{
+      text-decoration: line-through;
+    }
+  </style>
+  <li class='{{#if checked}}checked{{/if}}'>
+    <span class= 'text'>{{username}}<strong>-{{ text }}</strong></span> 
+    <button class='delete'>Delete</button>
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+  </li>
+</template>
